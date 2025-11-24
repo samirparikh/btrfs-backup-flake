@@ -268,9 +268,8 @@ ${subvolumesArray}
         # Send the snapshot (with or without parent)
         if [[ -n "$parent_path" ]]; then
             log "INFO" "Using incremental send with parent: $parent_snapshot"
-            if btrfs send -p "$parent_path" "$snapshot_path" 2>&1 | \
-               $SSH_CMD "$SSH_HOST" "sudo btrfs receive $remote_subvol_path" 2>&1 | \
-               tee -a "$LOG_FILE" >&2; then
+            if btrfs send -p "$parent_path" "$snapshot_path" | \
+               $SSH_CMD "$SSH_HOST" "sudo btrfs receive $remote_subvol_path"; then
                 log "INFO" "Successfully sent snapshot $snapshot_name to remote (incremental)"
                 return 0
             else
@@ -280,9 +279,8 @@ ${subvolumesArray}
         
         # Full send (either no parent or incremental failed)
         log "INFO" "Performing full send of snapshot"
-        if btrfs send "$snapshot_path" 2>&1 | \
-           $SSH_CMD "$SSH_HOST" "sudo btrfs receive $remote_subvol_path" 2>&1 | \
-           tee -a "$LOG_FILE" >&2; then
+        if btrfs send "$snapshot_path" | \
+           $SSH_CMD "$SSH_HOST" "sudo btrfs receive $remote_subvol_path"; then
             log "INFO" "Successfully sent snapshot $snapshot_name to remote (full)"
             return 0
         else
