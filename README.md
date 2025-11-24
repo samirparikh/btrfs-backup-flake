@@ -2,6 +2,9 @@
 
 A NixOS flake for automated BTRFS snapshot backups with remote replication via SSH.
 
+> ### ⚠️ Warning
+> I vibe-coded this flake using Claude AI
+
 ## Features
 
 - 📸 **Automated BTRFS snapshots** with read-only snapshots
