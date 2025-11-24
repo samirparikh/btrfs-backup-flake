@@ -670,7 +670,7 @@ in {
         PrivateTmp = true;
         NoNewPrivileges = false;  # Need sudo
         ProtectSystem = "strict";
-        ProtectHome = "read-only";
+        # ProtectHome = "read-only";  # Disabled - SSH needs access to /home for keys and config
         ReadWritePaths = [ cfg.localSnapshotPath cfg.logFile ];
       };
     };
