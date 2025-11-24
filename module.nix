@@ -261,7 +261,7 @@ ${subvolumesArray}
                             parent_path="$existing"
                         fi
                     fi
-                done
+                fi
             done
         fi
         
@@ -634,14 +634,6 @@ in {
     };
   };
 
-#  config = mkIf cfg.enable {
-#    # Install the script
-#    environment.systemPackages = [ btrfs-backup-script ];
-#
-#    # Ensure btrfs-progs is available system-wide
-#    environment.systemPackages = with pkgs; [
-#      btrfs-progs
-#    ];
   config = mkIf cfg.enable {
     # Install the script and btrfs-progs
     environment.systemPackages = [ btrfs-backup-script pkgs.btrfs-progs ];
