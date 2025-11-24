@@ -634,14 +634,17 @@ in {
     };
   };
 
+#  config = mkIf cfg.enable {
+#    # Install the script
+#    environment.systemPackages = [ btrfs-backup-script ];
+#
+#    # Ensure btrfs-progs is available system-wide
+#    environment.systemPackages = with pkgs; [
+#      btrfs-progs
+#    ];
   config = mkIf cfg.enable {
-    # Install the script
-    environment.systemPackages = [ btrfs-backup-script ];
-
-    # Ensure btrfs-progs is available system-wide
-    environment.systemPackages = with pkgs; [
-      btrfs-progs
-    ];
+    # Install the script and btrfs-progs
+    environment.systemPackages = [ btrfs-backup-script pkgs.btrfs-progs ];
 
     # Create log file and snapshot directory with proper permissions
     systemd.tmpfiles.rules = [
