@@ -28,7 +28,7 @@ Edit your `nixos-config/flake.nix`:
     
     # Add this flake
     btrfs-backup = {
-      url = "github:yourusername/btrfs-backup-flake";
+      url = "github:samirparikh/btrfs-backup-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -347,7 +347,7 @@ sudo -l
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/btrfs-backup-flake.git
+git clone https://github.com/samirparikh/btrfs-backup-flake.git
 cd btrfs-backup-flake
 
 # Enter development shell
@@ -388,7 +388,7 @@ Contributions welcome! Please:
 
 ## License
 
-MIT License - see LICENSE file for details
+Apache 2.0  License - see LICENSE file for details
 
 ## Acknowledgments
 
